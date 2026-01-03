@@ -2,7 +2,7 @@
 <CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
     <CheatEntry>
-      <ID>172</ID>
+      <ID>0</ID>
       <Description>"Enable"</Description>
       <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
       <LastState/>
@@ -18,7 +18,7 @@ LaunchMonoDataCollector()
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
-          <ID>0</ID>
+          <ID>1</ID>
           <Description>"Remove Chromatic"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -129,7 +129,7 @@ Tnots.ChromaticAberration:OnRenderImage+8b: E8 78 FA FF FF           - call Tnot
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>1</ID>
+          <ID>2</ID>
           <Description>"Remove Noise"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -241,7 +241,7 @@ Tnots.VHSPostProcessEffect:OnRenderImage+17: 8B 43 18                 - mov eax,
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>2</ID>
+          <ID>3</ID>
           <Description>"Remove VHS Effect"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -352,7 +352,7 @@ UnityEngine.Video.VideoPlayer:get_texture+1: 8B EC                    - mov ebp,
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>3</ID>
+          <ID>4</ID>
           <Description>"Remove Glitch Effect"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -451,7 +451,7 @@ Tnots.GlitchEffect:OnRenderImage+72: 39 00                    - cmp [eax],eax
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>4</ID>
+          <ID>5</ID>
           <Description>"Remove Distortion (usually in chases)"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -563,7 +563,7 @@ Tnots.Distortion:OnRenderImage+92: 39 00                    - cmp [eax],eax
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>5</ID>
+          <ID>6</ID>
           <Description>"Sharpness"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -674,7 +674,7 @@ Tnots.ChromaticAberration:OnRenderImage+14: D9 05 70 F1 0E 1F        - fld dword
 </AssemblerScript>
           <CheatEntries>
             <CheatEntry>
-              <ID>6</ID>
+              <ID>7</ID>
               <Description>"Value (default = 1)"</Description>
               <VariableType>Float</VariableType>
               <Address>SHP</Address>
@@ -682,7 +682,7 @@ Tnots.ChromaticAberration:OnRenderImage+14: D9 05 70 F1 0E 1F        - fld dword
           </CheatEntries>
         </CheatEntry>
         <CheatEntry>
-          <ID>7</ID>
+          <ID>8</ID>
           <Description>"Force Halloween event"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -789,7 +789,7 @@ UnityEngine.InputSystem.Controls.AxisControl:EvaluateMagnitude+3b: 85 C0        
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>8</ID>
+          <ID>9</ID>
           <Description>"No DMG (This will help unlock the no dmg achievement)"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -888,7 +888,7 @@ Tnots.PlayerController:TakeDamage+4d: 8D 65 FC                 - lea esp,[ebp-04
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>9</ID>
+          <ID>10</ID>
           <Description>"Freeze Killer"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
@@ -983,6 +983,368 @@ Tnots.EnemyController:HandleChasingState+58: 8D 4D AC           - lea ecx,[ebp-5
 Tnots.EnemyController:HandleChasingState+5b: 89 4C 24 04        - mov [esp+04],ecx
 Tnots.EnemyController:HandleChasingState+5f: 89 04 24           - mov [esp],eax
 Tnots.EnemyController:HandleChasingState+62: 39 00              - cmp [eax],eax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>11</ID>
+          <Description>"Make Killer Hide"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{Game  : The Night of the Scissors.exe
+Author : Glowmoss
+}
+
+[ENABLE]
+
+define(DisableEn,Tnots.EnemyController:Update)
+alloc(DisableEn_Orig,8)
+
+registersymbol(DisableEn DisableEn_Orig)
+
+DisableEn_Orig:
+  readmem(DisableEn,8)
+
+DisableEn:
+  jmp Tnots.EnemyController:SetHiddenState
+
+[DISABLE]
+
+DisableEn:
+  readmem(DisableEn_Orig,8)
+
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Tnots.EnemyController:Update
+
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+3: 83 EC 18                 - sub esp,18
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+6: 8B 45 08                 - mov eax,[ebp+08]
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+9: 8B 40 0C                 - mov eax,[eax+0C]
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+c: C7 44 24 04 F0 F6 DD 26  - mov [esp+04],26DDF6F0
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+14: 89 04 24                 - mov [esp],eax
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+17: 39 00                    - cmp [eax],eax
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+19: 8B C0                    - mov eax,eax
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+1b: E8 00 99 FF FF           - call UnityEngine.Animator:Play
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+20: C9                       - leave 
+Tnots.PlayerAestheticController:PlayPickupGroundAnimation+21: C3                       - ret 
+26F4F642: 00 00                    - add [eax],al
+26F4F644: 00 00                    - add [eax],al
+26F4F646: 00 00                    - add [eax],al
+Tnots.BaseAestheticController:Hide: 55                       - push ebp
+Tnots.BaseAestheticController:Hide+1: 8B EC                    - mov ebp,esp
+Tnots.BaseAestheticController:Hide+3: 83 EC 18                 - sub esp,18
+Tnots.BaseAestheticController:Hide+6: 8B 45 08                 - mov eax,[ebp+08]
+Tnots.BaseAestheticController:Hide+9: 89 04 24                 - mov [esp],eax
+Tnots.BaseAestheticController:Hide+c: 8D 6D 00                 - lea ebp,[ebp+00]
+Tnots.BaseAestheticController:Hide+f: E8 8C F1 4A F9           - call UnityEngine.Component:get_gameObject
+Tnots.BaseAestheticController:Hide+14: C7 44 24 04 00 00 00 00  - mov [esp+04],00000000
+Tnots.BaseAestheticController:Hide+1c: 89 04 24                 - mov [esp],eax
+Tnots.BaseAestheticController:Hide+1f: 39 00                    - cmp [eax],eax
+Tnots.BaseAestheticController:Hide+21: 8B C0                    - mov eax,eax
+Tnots.BaseAestheticController:Hide+23: E8 C8 B9 95 FD           - call UnityEngine.GameObject:SetActive
+Tnots.BaseAestheticController:Hide+28: C9                       - leave 
+Tnots.BaseAestheticController:Hide+29: C3                       - ret 
+26F4F672: 00 00                    - add [eax],al
+26F4F674: 00 00                    - add [eax],al
+26F4F676: 00 00                    - add [eax],al
+// ---------- INJECTING HERE ----------
+Tnots.EnemyController:Update - 55                    - push ebp
+Tnots.EnemyController:Update+1- 8B EC                 - mov ebp,esp
+Tnots.EnemyController:Update+3 - 57                    - push edi
+Tnots.EnemyController:Update+4 - 56                    - push esi
+// ---------- DONE INJECTING  ----------
+Tnots.EnemyController:Update+5: 83 EC 20                 - sub esp,20
+Tnots.EnemyController:Update+8: 8B 7D 08                 - mov edi,[ebp+08]
+Tnots.EnemyController:Update+b: 8B 47 20                 - mov eax,[edi+20]
+Tnots.EnemyController:Update+e: 8B 4F 28                 - mov ecx,[edi+28]
+Tnots.EnemyController:Update+11: 8B D1                    - mov edx,ecx
+Tnots.EnemyController:Update+13: 39 12                    - cmp [edx],edx
+Tnots.EnemyController:Update+15: D9 41 28                 - fld dword ptr [ecx+28]
+Tnots.EnemyController:Update+18: D9 5D F4                 - fstp dword ptr [ebp-0C]
+Tnots.EnemyController:Update+1b: D9 45 F4                 - fld dword ptr [ebp-0C]
+Tnots.EnemyController:Update+1e: D9 5C 24 04              - fstp dword ptr [esp+04]
+Tnots.EnemyController:Update+22: 89 04 24                 - mov [esp],eax
+Tnots.EnemyController:Update+25: 39 00                    - cmp [eax],eax
+Tnots.EnemyController:Update+27: E8 34 1B 00 00           - call Tnots.EnemyNavMeshAgentController:SetSpeed
+Tnots.EnemyController:Update+2c: 8B 47 24                 - mov eax,[edi+24]
+Tnots.EnemyController:Update+2f: 89 45 F0                 - mov [ebp-10],eax
+Tnots.EnemyController:Update+32: 8B 47 20                 - mov eax,[edi+20]
+Tnots.EnemyController:Update+35: 89 04 24                 - mov [esp],eax
+Tnots.EnemyController:Update+38: 39 00                    - cmp [eax],eax
+Tnots.EnemyController:Update+3a: 90                       - nop 
+Tnots.EnemyController:Update+3b: E8 A8 1C 00 00           - call Tnots.EnemyNavMeshAgentController:get_CurrentSpeed
+Tnots.EnemyController:Update+40: 8B 45 F0                 - mov eax,[ebp-10]
+Tnots.EnemyController:Update+43: 8B 4F 28                 - mov ecx,[edi+28]
+Tnots.EnemyController:Update+46: 8B D1                    - mov edx,ecx
+Tnots.EnemyController:Update+48: 39 12                    - cmp [edx],edx
+Tnots.EnemyController:Update+4a: D9 41 10                 - fld dword ptr [ecx+10]
+Tnots.EnemyController:Update+4d: D9 5D F4                 - fstp dword ptr [ebp-0C]
+Tnots.EnemyController:Update+50: D9 45 F4                 - fld dword ptr [ebp-0C]
+Tnots.EnemyController:Update+53: DE F9                    - fdivp st(1),st(0)
+Tnots.EnemyController:Update+55: D9 5C 24 04              - fstp dword ptr [esp+04]
+Tnots.EnemyController:Update+59: 89 04 24                 - mov [esp],eax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12</ID>
+          <Description>"Safe code (interact with safe to display)"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{Game  : The Night of the Scissors.exe
+Author : Glowmoss
+}
+
+[ENABLE]
+
+define(Safe,Tnots.SafeBoxController:Use)
+alloc(newmem,128,Safe)
+
+registersymbol(Safe Safe_Orig Sbas)
+label(return Safe_Orig Sbas)
+
+newmem:
+  mov [Sbas],ecx
+Safe_Orig:
+  readmem(Safe,7)
+  //push ebp
+  //mov ebp,esp
+  //push edi
+  //sub esp,24
+  jmp return
+
+Sbas:
+  dd 0
+
+Safe:
+  jmp newmem
+  nop 2
+return:
+
+[DISABLE]
+
+Safe:
+  readmem(Safe_Orig,7)
+
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Tnots.SafeBoxController:Use
+
+Tnots.SafeBoxController:SetInteractor+46: 5E                 - pop esi
+Tnots.SafeBoxController:SetInteractor+47: C9                 - leave 
+Tnots.SafeBoxController:SetInteractor+48: C3                 - ret 
+Tnots.SafeBoxController:SetInteractor+49: 6A 49              - push 49
+Tnots.SafeBoxController:SetInteractor+4b: 68 A0 01 00 00     - push 000001A0
+Tnots.SafeBoxController:SetInteractor+50: E8 8B 99 A5 DD     - call 049B1100
+26F57775: 00 00              - add [eax],al
+26F57777: 00 68 E8           - add [eax-18],ch
+26F5777A: 46                 - inc esi
+26F5777B: 35 29 E9 7E 89     - xor eax,897EE929
+26F57780: A5                 - movsd 
+26F57781: DD 00              - fld qword ptr [eax]
+26F57783: 00 00              - add [eax],al
+26F57785: 00 00              - add [eax],al
+26F57787: 00 55 8B           - add [ebp-75],dl
+Tnots.PlayerSafeBoxController:SetSafeBox+2: EC                 - in al,dx
+Tnots.PlayerSafeBoxController:SetSafeBox+3: 83 EC 18           - sub esp,18
+Tnots.PlayerSafeBoxController:SetSafeBox+6: 8B 4D 0C           - mov ecx,[ebp+0C]
+Tnots.PlayerSafeBoxController:SetSafeBox+9: 8B 45 08           - mov eax,[ebp+08]
+Tnots.PlayerSafeBoxController:SetSafeBox+c: 89 48 18           - mov [eax+18],ecx
+Tnots.PlayerSafeBoxController:SetSafeBox+f: 05 18 00 00 00     - add eax,00000018
+Tnots.PlayerSafeBoxController:SetSafeBox+14: 89 04 24           - mov [esp],eax
+Tnots.PlayerSafeBoxController:SetSafeBox+17: E8 3C 99 AA DD     - call System.Object:wbarrier_conc
+Tnots.PlayerSafeBoxController:SetSafeBox+1c: 8B 45 0C           - mov eax,[ebp+0C]
+Tnots.PlayerSafeBoxController:SetSafeBox+1f: C9                 - leave 
+Tnots.PlayerSafeBoxController:SetSafeBox+20: C3                 - ret 
+26F577A9: 00 00              - add [eax],al
+26F577AB: 00 00              - add [eax],al
+26F577AD: 00 00              - add [eax],al
+26F577AF: 00                 - db 00 
+// ---------- INJECTING HERE ----------
+Tnots.SafeBoxController:Use: 55                 - push ebp
+// ---------- DONE INJECTING  ----------
+Tnots.SafeBoxController:Use+1: 8B EC              - mov ebp,esp
+Tnots.SafeBoxController:Use+3: 57                 - push edi
+Tnots.SafeBoxController:Use+4: 83 EC 24           - sub esp,24
+Tnots.SafeBoxController:Use+7: 8B 7D 08           - mov edi,[ebp+08]
+Tnots.SafeBoxController:Use+a: 0F B6 47 35        - movzx eax,byte ptr [edi+35]
+Tnots.SafeBoxController:Use+e: 85 C0              - test eax,eax
+Tnots.SafeBoxController:Use+10: 0F 85 36 00 00 00  - jne Tnots.SafeBoxController:Use+4c
+Tnots.SafeBoxController:Use+16: C6 47 34 00        - mov byte ptr [edi+34],00
+Tnots.SafeBoxController:Use+1a: 8B 47 0C           - mov eax,[edi+0C]
+Tnots.SafeBoxController:Use+1d: 8B C8              - mov ecx,eax
+Tnots.SafeBoxController:Use+1f: 89 4D F8           - mov [ebp-08],ecx
+Tnots.SafeBoxController:Use+22: 85 C0              - test eax,eax
+Tnots.SafeBoxController:Use+24: 75 02              - jne Tnots.SafeBoxController:Use+28
+Tnots.SafeBoxController:Use+26: EB 0C              - jmp Tnots.SafeBoxController:Use+34
+Tnots.SafeBoxController:Use+28: 8B 45 F8           - mov eax,[ebp-08]
+Tnots.SafeBoxController:Use+2b: 89 04 24           - mov [esp],eax
+Tnots.SafeBoxController:Use+2e: 90                 - nop 
+Tnots.SafeBoxController:Use+2f: E8 74 F3 1B 00     - call UnityEngine.Events.UnityEvent:Invoke
+Tnots.SafeBoxController:Use+34: 89 3C 24           - mov [esp],edi
+Tnots.SafeBoxController:Use+37: E8 2C 00 00 00     - call Tnots.SafeBoxController:RefreshValues
+Tnots.SafeBoxController:Use+3c: 8B 47 24           - mov eax,[edi+24]
+Tnots.SafeBoxController:Use+3f: 89 04 24           - mov [esp],eax
+Tnots.SafeBoxController:Use+42: 8B 00              - mov eax,[eax]
+Tnots.SafeBoxController:Use+44: BA D0 57 1F 20     - mov edx,201F57D0
+Tnots.SafeBoxController:Use+49: FF 50 B8           - call dword ptr [eax-48]
+Tnots.SafeBoxController:Use+4c: 8D 65 FC           - lea esp,[ebp-04]
+Tnots.SafeBoxController:Use+4f: 8D 65 FC           - lea esp,[ebp-04]
+Tnots.SafeBoxController:Use+52: 5F                 - pop edi
+Tnots.SafeBoxController:Use+53: C9                 - leave 
+Tnots.SafeBoxController:Use+54: C3                 - ret 
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>13</ID>
+              <Description>"1st digit"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>Sbas</Address>
+              <Offsets>
+                <Offset>10</Offset>
+                <Offset>1C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>14</ID>
+              <Description>"2nd digit"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>Sbas</Address>
+              <Offsets>
+                <Offset>14</Offset>
+                <Offset>1C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>15</ID>
+              <Description>"3rd digit"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>Sbas</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>1C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16</ID>
+              <Description>"4th digit"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>Sbas</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>1C</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"Toggle Debug menu (Hit F1 InGame)"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{Game  : The Night of the Scissors.exe
+Author : Glowmoss
+}
+
+[ENABLE]
+
+aobscanregion(Debug,Tnots.InputManager:OnToggleDebugUI,Tnots.InputManager:OnToggleDebugUI+29,74 ? 8B ? ? ? ? ? 8B ? 39 ? 8B ? ? 89 ? ? 39)
+alloc(Debug_Orig,8)
+
+registersymbol(Debug Debug_Orig)
+
+Debug_Orig:
+  readmem(Debug,8)
+  //je Tnots.InputManager:OnToggleDebugUI+28
+  //mov eax,[072C3CE0]
+
+Debug:
+  db 90 90
+
+[DISABLE]
+
+Debug:
+  readmem(Debug_Orig,8)
+
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Tnots.InputManager:OnToggleDebugUI+d
+
+299AD185: 00 00              - add [eax],al
+299AD187: 00 55 8B           - add [ebp-75],dl
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+2: EC                 - in al,dx
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+3: 83 EC 28           - sub esp,28
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+6: 8B 45 08           - mov eax,[ebp+08]
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+9: 8B 40 18           - mov eax,[eax+18]
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+c: 85 C0              - test eax,eax
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+e: 0F 97 C0           - seta al
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+11: 0F B6 C0           - movzx eax,al
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+14: 0F B6 C0           - movzx eax,al
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+17: 85 C0              - test eax,eax
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+19: 74 16              - je UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+31
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+1b: 8B 4D 08           - mov ecx,[ebp+08]
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+1e: 8B 41 18           - mov eax,[ecx+18]
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+21: 89 4C 24 04        - mov [esp+04],ecx
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+25: 89 04 24           - mov [esp],eax
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+28: 89 45 FC           - mov [ebp-04],eax
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+2b: FF 50 0C           - call dword ptr [eax+0C]
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+2e: 8B 45 FC           - mov eax,[ebp-04]
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+31: C9                 - leave 
+UnityEngine.Video.VideoPlayer:InvokeFrameDroppedCallback_Internal+32: C3                 - ret 
+299AD1BB: 00 00              - add [eax],al
+299AD1BD: 00 00              - add [eax],al
+299AD1BF: 00 55 8B           - add [ebp-75],dl
+Tnots.InputManager:OnToggleDebugUI+2: EC                 - in al,dx
+Tnots.InputManager:OnToggleDebugUI+3: 83 EC 18           - sub esp,18
+Tnots.InputManager:OnToggleDebugUI+6: 33 C0              - xor eax,eax
+Tnots.InputManager:OnToggleDebugUI+8: 0F B6 C0           - movzx eax,al
+Tnots.InputManager:OnToggleDebugUI+b: 85 C0              - test eax,eax
+Tnots.InputManager:OnToggleDebugUI+d: 74 19              - je Tnots.InputManager:OnToggleDebugUI+28
+// ---------- INJECTING HERE ----------
+Tnots.InputManager:OnToggleDebugUI+f: 8B 05 E0 3C 2C 07  - mov eax,[072C3CE0]
+// ---------- DONE INJECTING  ----------
+Tnots.InputManager:OnToggleDebugUI+15: 8B C8              - mov ecx,eax
+Tnots.InputManager:OnToggleDebugUI+17: 39 09              - cmp [ecx],ecx
+Tnots.InputManager:OnToggleDebugUI+19: 8B 40 20           - mov eax,[eax+20]
+Tnots.InputManager:OnToggleDebugUI+1c: 89 04 24           - mov [esp],eax
+Tnots.InputManager:OnToggleDebugUI+1f: 39 00              - cmp [eax],eax
+Tnots.InputManager:OnToggleDebugUI+21: 8B C0              - mov eax,eax
+Tnots.InputManager:OnToggleDebugUI+23: E8 90 D4 57 FD     - call Tnots.UI.IngameUIController:ToggleDebugPanel
+Tnots.InputManager:OnToggleDebugUI+28: C9                 - leave 
+Tnots.InputManager:OnToggleDebugUI+29: C3                 - ret 
+299AD1EA: 00 00              - add [eax],al
+299AD1EC: 68 A8 EB 9D 19     - push 199DEBA8
+299AD1F1: E9 0A 2F 00 DB     - jmp 049B0100
+299AD1F6: 00 00              - add [eax],al
+Tnots.InputManager:OnPlayerFlashlightToggle: EB C6              - jmp Tnots.InputManager:OnToggleDebugUI
+Tnots.InputManager:OnPlayerFlashlightToggle+2: 90                 - nop 
+Tnots.InputManager:OnPlayerFlashlightToggle+3: 83 EC 18           - sub esp,18
+Tnots.InputManager:OnPlayerFlashlightToggle+6: 8B 45 08           - mov eax,[ebp+08]
+Tnots.InputManager:OnPlayerFlashlightToggle+9: 8B 40 10           - mov eax,[eax+10]
+Tnots.InputManager:OnPlayerFlashlightToggle+c: 89 04 24           - mov [esp],eax
+Tnots.InputManager:OnPlayerFlashlightToggle+f: 39 00              - cmp [eax],eax
+Tnots.InputManager:OnPlayerFlashlightToggle+11: 8B C0              - mov eax,eax
+Tnots.InputManager:OnPlayerFlashlightToggle+13: E8 04 00 00 00     - call 299AD214
+Tnots.InputManager:OnPlayerFlashlightToggle+18: C9                 - leave 
+Tnots.InputManager:OnPlayerFlashlightToggle+19: C3                 - ret 
+299AD212: 00 00              - add [eax],al
+299AD214: 68 B0 2E C1 19     - push 19C12EB0
+299AD219: E9 E2 2E 00 DB     - jmp 049B0100
+299AD21E: 00 00              - add [eax],al
+Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility:ConvertExistingDataToNativeArray: 55                 - push ebp
+Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility:ConvertExistingDataToNativeArray+1: 8B EC              - mov ebp,esp
 }
 </AssemblerScript>
         </CheatEntry>

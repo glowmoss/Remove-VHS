@@ -2,6 +2,51 @@
 <CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
     <CheatEntry>
+      <ID>94</ID>
+      <Description>"Compact View"</Description>
+      <LastState/>
+      <Color>00FFFF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+if syntaxcheck then return end
+[ENABLE]
+function cycleFullCompact(sender,force); local state = not(compactmenuitem.Caption == 'Compact'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact' or 'Full'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible = state; getMainForm().Panel5.Visible = state; end; function addCompactMenu(); if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true)
+[DISABLE]
+cycleFullCompact(nil,false)
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>96</Key>
+          </Keys>
+          <ID>0</ID>
+          <ActivateSound TTS="EN">Compact View Activated</ActivateSound>
+          <DeactivateSound TTS="EN">Compact View Deactivated</DeactivateSound>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95</ID>
+      <Description>"Attach Process"</Description>
+      <LastState/>
+      <Color>00FFFF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+if syntaxcheck then return end
+[ENABLE]
+Proc="Northbury Grove.exe"
+Nam="Northbury Grove"
+if  openProcess(Proc) then
+        MessageDialog(Nam, "Attached to " .. Nam, 2,mbOK) end
+  if not getProcessIDFromProcessName(Proc) then
+       error(MessageDialog(Nam, Nam .." Isn't Running\rPlease Open " .. Nam .. " And Try Again",1,mbOK )) end
+return 'nop'
+[DISABLE]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
       <ID>172</ID>
       <Description>"Enable"</Description>
       <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
@@ -12,6 +57,7 @@
 if syntaxcheck then return end
 
 [ENABLE]
+MainForm.caption = "Northbury Grove Table By Glowmoss"
 mono_initialize()
 LaunchMonoDataCollector()
 [DISABLE]

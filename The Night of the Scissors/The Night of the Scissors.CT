@@ -2,6 +2,51 @@
 <CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
     <CheatEntry>
+      <ID>94</ID>
+      <Description>"Compact View"</Description>
+      <LastState/>
+      <Color>00FFFF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+if syntaxcheck then return end
+[ENABLE]
+function cycleFullCompact(sender,force); local state = not(compactmenuitem.Caption == 'Compact'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact' or 'Full'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible = state; getMainForm().Panel5.Visible = state; end; function addCompactMenu(); if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true)
+[DISABLE]
+cycleFullCompact(nil,false)
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>17</Key>
+            <Key>96</Key>
+          </Keys>
+          <ID>0</ID>
+          <ActivateSound TTS="EN">Compact View Activated</ActivateSound>
+          <DeactivateSound TTS="EN">Compact View Deactivated</DeactivateSound>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95</ID>
+      <Description>"Attach Process"</Description>
+      <LastState/>
+      <Color>00FFFF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+if syntaxcheck then return end
+[ENABLE]
+Proc="The Night of the Scissors.exe"
+Nam="The Night of the Scissors"
+if  openProcess(Proc) then
+        MessageDialog(Nam, "Attached to " .. Nam, 2,mbOK) end
+  if not getProcessIDFromProcessName(Proc) then
+       error(MessageDialog(Nam, Nam .." Isn't Running\rPlease Open " .. Nam .. " And Try Again",1,mbOK )) end
+return 'nop'
+[DISABLE]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
       <ID>0</ID>
       <Description>"Enable"</Description>
       <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
@@ -12,6 +57,7 @@
 if syntaxcheck then return end
 
 [ENABLE]
+MainForm.caption = "The Night of the Scissors Table By Glowmoss"
 mono_initialize()
 LaunchMonoDataCollector()
 [DISABLE]
@@ -21,6 +67,7 @@ LaunchMonoDataCollector()
           <ID>1</ID>
           <Description>"Remove Chromatic"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -132,6 +179,7 @@ Tnots.ChromaticAberration:OnRenderImage+8b: E8 78 FA FF FF           - call Tnot
           <ID>2</ID>
           <Description>"Remove Noise"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -244,6 +292,7 @@ Tnots.VHSPostProcessEffect:OnRenderImage+17: 8B 43 18                 - mov eax,
           <ID>3</ID>
           <Description>"Remove VHS Effect"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -355,6 +404,7 @@ UnityEngine.Video.VideoPlayer:get_texture+1: 8B EC                    - mov ebp,
           <ID>4</ID>
           <Description>"Remove Glitch Effect"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -454,6 +504,7 @@ Tnots.GlitchEffect:OnRenderImage+72: 39 00                    - cmp [eax],eax
           <ID>5</ID>
           <Description>"Remove Distortion (usually in chases)"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -565,7 +616,9 @@ Tnots.Distortion:OnRenderImage+92: 39 00                    - cmp [eax],eax
         <CheatEntry>
           <ID>6</ID>
           <Description>"Sharpness"</Description>
+          <Options moHideChildren="1"/>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -676,6 +729,7 @@ Tnots.ChromaticAberration:OnRenderImage+14: D9 05 70 F1 0E 1F        - fld dword
             <CheatEntry>
               <ID>7</ID>
               <Description>"Value (default = 1)"</Description>
+              <Color>FFFF00</Color>
               <VariableType>Float</VariableType>
               <Address>SHP</Address>
             </CheatEntry>
@@ -685,6 +739,7 @@ Tnots.ChromaticAberration:OnRenderImage+14: D9 05 70 F1 0E 1F        - fld dword
           <ID>8</ID>
           <Description>"Force Halloween event"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -792,6 +847,7 @@ UnityEngine.InputSystem.Controls.AxisControl:EvaluateMagnitude+3b: 85 C0        
           <ID>9</ID>
           <Description>"No DMG (This will help unlock the no dmg achievement)"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -891,6 +947,7 @@ Tnots.PlayerController:TakeDamage+4d: 8D 65 FC                 - lea esp,[ebp-04
           <ID>10</ID>
           <Description>"Freeze Killer"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -990,6 +1047,7 @@ Tnots.EnemyController:HandleChasingState+62: 39 00              - cmp [eax],eax
           <ID>11</ID>
           <Description>"Make Killer Hide"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -1093,6 +1151,7 @@ Tnots.EnemyController:Update+59: 89 04 24                 - mov [esp],eax
           <Description>"Safe code (interact with safe to display)"</Description>
           <Options moHideChildren="1"/>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
@@ -1205,6 +1264,7 @@ Tnots.SafeBoxController:Use+54: C3                 - ret
               <ID>13</ID>
               <Description>"1st digit"</Description>
               <ShowAsSigned>0</ShowAsSigned>
+              <Color>FFFF00</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>Sbas</Address>
               <Offsets>
@@ -1216,6 +1276,7 @@ Tnots.SafeBoxController:Use+54: C3                 - ret
               <ID>14</ID>
               <Description>"2nd digit"</Description>
               <ShowAsSigned>0</ShowAsSigned>
+              <Color>FFFF00</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>Sbas</Address>
               <Offsets>
@@ -1227,6 +1288,7 @@ Tnots.SafeBoxController:Use+54: C3                 - ret
               <ID>15</ID>
               <Description>"3rd digit"</Description>
               <ShowAsSigned>0</ShowAsSigned>
+              <Color>FFFF00</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>Sbas</Address>
               <Offsets>
@@ -1238,6 +1300,7 @@ Tnots.SafeBoxController:Use+54: C3                 - ret
               <ID>16</ID>
               <Description>"4th digit"</Description>
               <ShowAsSigned>0</ShowAsSigned>
+              <Color>FFFF00</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>Sbas</Address>
               <Offsets>
@@ -1251,6 +1314,7 @@ Tnots.SafeBoxController:Use+54: C3                 - ret
           <ID>17</ID>
           <Description>"Toggle Debug menu (Hit F1 InGame)"</Description>
           <LastState/>
+          <Color>008000</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{Game  : The Night of the Scissors.exe
 Author : Glowmoss
